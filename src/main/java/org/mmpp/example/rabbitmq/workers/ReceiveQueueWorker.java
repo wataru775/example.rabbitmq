@@ -1,4 +1,4 @@
-package org.mmpp.example.rabbitmq.listener;
+package org.mmpp.example.rabbitmq.workers;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 @Component
-public class ReceiveQueueListener {
+public class ReceiveQueueWorker {
 
     private final static String QUEUE_NAME = "hello";
 
@@ -20,7 +20,7 @@ public class ReceiveQueueListener {
     private final static String MQ_USER = "rabbit";
     private final static String MQ_PASSWORD = "rabbit";
 
-    private final static Logger logger = LoggerFactory.getLogger(ReceiveQueueListener.class);
+    private final static Logger logger = LoggerFactory.getLogger(ReceiveQueueWorker.class);
 
     public void doReceive() throws IOException, TimeoutException {
         final ConnectionFactory factory = new ConnectionFactory();

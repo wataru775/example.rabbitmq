@@ -1,6 +1,6 @@
 package org.mmpp.example.rabbitmq;
 
-import org.mmpp.example.rabbitmq.listener.ReceiveQueueListener;
+import org.mmpp.example.rabbitmq.workers.ReceiveQueueWorker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -16,8 +16,8 @@ public class Application {
         // Spring boot Applicationの実行
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
         // Componentの取り出し
-        ReceiveQueueListener service = context.getBean(ReceiveQueueListener.class);
+        ReceiveQueueWorker worker = context.getBean(ReceiveQueueWorker.class);
         // サービスを実行
-        service.doReceive();
+        worker.doReceive();
     }
 }
