@@ -18,36 +18,33 @@ public class PostQueueApplication {
 
     private final static Logger logger = LoggerFactory.getLogger(PostQueueApplication.class);
 
-    private static Connection connection;
     private static Channel channel;
 
-    static {
-        try {
-            ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost(MQ_HOST);
-            factory.setUsername(MQ_USER);
-            factory.setPassword(MQ_PASSWORD);
-
-            connection = factory.newConnection();
-            channel = connection.createChannel();
-            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        } catch (IOException | TimeoutException e) {
-            e.printStackTrace();
-        }
-
-    }
     public static void main(String[] args ) throws IOException, TimeoutException {
-        for (int i = 1; i <= 10; i++) {
-            String message = "ハローワールド ! " + i;
 
-            sendMessage(message);
-        }
-        sendMessage("1st message");
-        sendMessage("2nd message....");
-        sendMessage("3rd message");
-        sendMessage("4th message..");
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost(MQ_HOST);
+        factory.setUsername(MQ_USER);
+        factory.setPassword(MQ_PASSWORD);
+
+        Connection connection = factory.newConnection();
+        channel = connection.createChannel();
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+
+        // 疎通確認
+        sendMessage("ハローワールド !");
+
+        // 複数パケットの動作確認様
+        sendMessage("1st message.");
+        sendMessage("2nd message.....");
+        sendMessage("3rd message.");
+        sendMessage("4th message...");
         sendMessage("5th message..");
-        sendMessage("6th message..");
+        sendMessage("6th message...");
+        sendMessage("7th message.");
+        sendMessage("8th message.");
+        sendMessage("9th message.");
+        sendMessage("10th message.");
 
         channel.close();
         connection.close();
