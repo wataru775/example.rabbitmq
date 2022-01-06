@@ -3,13 +3,11 @@ package org.mmpp.example.rabbitmq.workers;
 import com.rabbitmq.client.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.TimeoutException;
 
-@Component
 public class ReceiveQueueWorker {
 
     private final static String QUEUE_NAME = "hello";
