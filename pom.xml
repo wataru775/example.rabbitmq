@@ -40,6 +40,22 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>executable-alot-lost-receivequeue-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>AlotLostReceiveQueue</finalName>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>org.mmpp.example.rabbitmq.queue.a_lot.ReceiveLostQueueWorker</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>executable-postqueue-jar</id>
                         <phase>package</phase>
                         <goals>
